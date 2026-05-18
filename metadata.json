@@ -1,0 +1,6 @@
+{
+  "name": "Network Metrics Visualizer",
+  "description": "Visualizes network analysis metrics (Degree, Closeness, Betweenness, etc.) from Google Sheets with category-based clustering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

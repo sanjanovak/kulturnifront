@@ -3,12 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { User } from 'firebase/auth';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   ScatterChart, Scatter, ZAxis
 } from 'recharts';
+import ForceGraph2D from 'react-force-graph-2d';
 import { 
   LogOut, 
   BarChart3, 
@@ -18,10 +19,13 @@ import {
   Layers, 
   ZoomIn, 
   RefreshCw,
-  AlertCircle
+  AlertCircle,
+  Share2,
+  Maximize2
 } from 'lucide-react';
 import { initAuth, googleSignIn, logout } from './lib/firebase';
-import { fetchSpreadsheetData, NetworkData } from './services/sheetsService';
+import { fetchSpreadsheetData, NetworkData, EdgeData } from './services/sheetsService';
+import { calculateLouvainCommunities } from './services/louvainService';
 import { cn } from './lib/utils';
 
 const METRICS = [
@@ -40,8 +44,13 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [authLoading, setAuthLoading] = useState(false);
   const [data, setData] = useState<NetworkData[]>([]);
+  const [edges, setEdges] = useState<EdgeData[]>([]);
   const [error, setError] = useState<{message: string, details?: string} | null>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [groupingMode, setGroupingMode] = useState<'original' | 'louvain'>('original');
+  const [viewMode, setViewMode] = useState<'charts' | 'graph'>('charts');
+  const [hasLouvain, setHasLouvain] = useState(false);
+  const graphRef = useRef<any>(null);
 
   useEffect(() => {
     const unsubscribe = initAuth(
@@ -70,11 +79,20 @@ export default function App() {
     setLoading(true);
     setError(null);
     try {
-      const fetchedData = await fetchSpreadsheetData(token, SPREADSHEET_ID);
-      setData(fetchedData);
-      if (fetchedData.length > 0) {
-        // Get unique categories and pick the first one
-        const categories = Array.from(new Set(fetchedData.map(d => d.Category)));
+      const { nodes, edges: fetchedEdges } = await fetchSpreadsheetData(token, SPREADSHEET_ID);
+      
+      let finalNodes = nodes;
+      if (fetchedEdges.length > 0) {
+        finalNodes = calculateLouvainCommunities(nodes, fetchedEdges);
+        setHasLouvain(true);
+      } else {
+        setHasLouvain(false);
+      }
+
+      setData(finalNodes);
+      setEdges(fetchedEdges);
+      if (finalNodes.length > 0) {
+        const categories = Array.from(new Set(finalNodes.map(d => d.Category)));
         setActiveCategory(categories[0]);
       }
     } catch (err: any) {
@@ -109,8 +127,34 @@ export default function App() {
     }
   };
 
-  const categories = Array.from(new Set(data.map(d => d.Category)));
-  const filteredData = activeCategory ? data.filter(d => d.Category === activeCategory) : data;
+  const currentCategories = Array.from(new Set(data.map(d => 
+    groupingMode === 'original' ? d.Category : (d.LouvainCommunity || 'No Community')
+  ))).sort();
+
+  const filteredData = activeCategory ? data.filter(d => 
+    (groupingMode === 'original' ? d.Category : d.LouvainCommunity) === activeCategory
+  ) : data;
+
+  useEffect(() => {
+    if (currentCategories.length > 0 && !activeCategory) {
+      setActiveCategory(currentCategories[0]);
+    }
+  }, [groupingMode, currentCategories]);
+
+  const graphData = useMemo(() => ({
+    nodes: data.map(n => ({
+      id: n.Label,
+      label: n.Label,
+      val: Math.sqrt(n.Degree + 1) * 2,
+      color: `hsl(${currentCategories.indexOf(groupingMode === 'original' ? n.Category : (n.LouvainCommunity || '')) * 137.5}, 70%, 50%)`,
+      ...n
+    })),
+    links: edges.map(e => ({
+      source: e.Source,
+      target: e.Target,
+      value: e.Weight || 1
+    }))
+  }), [data, edges, groupingMode, currentCategories]);
 
   if (loading && !data.length) {
     return (
@@ -179,9 +223,32 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="bg-blue-600 p-1.5 rounded-lg">
-              <BarChart3 className="text-white w-5 h-5" />
+              <Network className="text-white w-5 h-5" />
             </div>
-            <span className="font-bold text-lg hidden sm:block tracking-tight">Metrics Dashboard</span>
+            <span className="font-bold text-lg hidden sm:block tracking-tight text-slate-800">Udruga Kulturni Front Analiza</span>
+          </div>
+
+          <div className="flex bg-slate-100 p-1 rounded-xl">
+            <button
+              onClick={() => setViewMode('charts')}
+              className={cn(
+                "px-4 py-1.5 rounded-lg text-xs font-bold flex items-center gap-2 transition-all",
+                viewMode === 'charts' ? "bg-white text-blue-600 shadow-sm" : "text-slate-500 hover:text-slate-700"
+              )}
+            >
+              <BarChart3 className="w-4 h-4" />
+              Statistika
+            </button>
+            <button
+              onClick={() => setViewMode('graph')}
+              className={cn(
+                "px-4 py-1.5 rounded-lg text-xs font-bold flex items-center gap-2 transition-all",
+                viewMode === 'graph' ? "bg-white text-blue-600 shadow-sm" : "text-slate-500 hover:text-slate-700"
+              )}
+            >
+              <Share2 className="w-4 h-4" />
+              Mrežni Graf
+            </button>
           </div>
 
           <div className="flex items-center gap-4">
@@ -211,125 +278,202 @@ export default function App() {
           </div>
         )}
 
-        {/* Categories Navigation */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2 text-slate-500 mb-2">
-            <Layers className="w-4 h-4" />
-            <span className="text-sm font-semibold uppercase tracking-wider">Clusters / Categories</span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border",
-                  activeCategory === cat
-                    ? "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-100 scale-105"
-                    : "bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:text-blue-600"
-                )}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
+        {viewMode === 'charts' ? (
+          <>
+            {/* Categories Navigation */}
+            <div className="space-y-6">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex items-center gap-2 text-slate-500">
+                  <Layers className="w-4 h-4" />
+                  <span className="text-sm font-semibold uppercase tracking-wider">
+                    {groupingMode === 'original' ? 'Original Groups' : 'Louvain Communities'}
+                  </span>
+                </div>
 
-        {/* Dashboard Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {METRICS.map((metric) => (
-            <div 
-              key={metric.key} 
-              className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4 hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-slate-50">
-                    <Activity className="w-5 h-5 text-slate-600" />
+                {hasLouvain && (
+                  <div className="flex bg-slate-200 p-1 rounded-xl w-fit">
+                    <button
+                      onClick={() => setGroupingMode('original')}
+                      className={cn(
+                        "px-4 py-1.5 rounded-lg text-xs font-bold transition-all",
+                        groupingMode === 'original' ? "bg-white text-blue-600 shadow-sm" : "text-slate-500 hover:text-slate-700"
+                      )}
+                    >
+                      Original
+                    </button>
+                    <button
+                      onClick={() => setGroupingMode('louvain')}
+                      className={cn(
+                        "px-4 py-1.5 rounded-lg text-xs font-bold transition-all",
+                        groupingMode === 'louvain' ? "bg-white text-blue-600 shadow-sm" : "text-slate-500 hover:text-slate-700"
+                      )}
+                    >
+                      Louvain (AI Discovery)
+                    </button>
                   </div>
-                  <h3 className="font-bold text-slate-800">{metric.label}</h3>
-                </div>
-                <div className="text-xs font-mono bg-slate-100 px-2 py-1 rounded text-slate-500">
-                  {filteredData.length} Nodes
-                </div>
+                )}
               </div>
 
-              <div className="h-[300px] w-full">
+              <div className="flex flex-wrap gap-2">
+                {currentCategories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={cn(
+                      "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border",
+                      activeCategory === cat
+                        ? "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-100 scale-105"
+                        : "bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:text-blue-600"
+                    )}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Dashboard Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {METRICS.map((metric) => (
+                <div 
+                  key={metric.key} 
+                  className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4 hover:shadow-md transition-shadow"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-slate-50">
+                        <Activity className="w-5 h-5 text-slate-600" />
+                      </div>
+                      <h3 className="font-bold text-slate-800">{metric.label}</h3>
+                    </div>
+                    <div className="text-xs font-mono bg-slate-100 px-2 py-1 rounded text-slate-500">
+                      {filteredData.length} Nodes
+                    </div>
+                  </div>
+
+                  <div className="h-[300px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={filteredData.sort((a, b) => b[metric.key] - a[metric.key]).slice(0, 20)}>
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                        <XAxis 
+                          dataKey="Label" 
+                          hide={filteredData.length > 10} 
+                          fontSize={10} 
+                          axisLine={false}
+                          tickLine={false}
+                        />
+                        <YAxis 
+                          axisLine={false}
+                          tickLine={false}
+                          fontSize={12}
+                        />
+                        <Tooltip 
+                          contentStyle={{ 
+                            borderRadius: '12px', 
+                            border: 'none', 
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.1)' 
+                          }}
+                        />
+                        <Bar 
+                          dataKey={metric.key} 
+                          fill={metric.color} 
+                          radius={[4, 4, 0, 0]}
+                          animationDuration={1000}
+                        />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Global Metric Distribution (Scatter) */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 space-y-6">
+              <div className="space-y-1">
+                <h2 className="text-xl font-bold tracking-tight">Metric Relationships</h2>
+                <p className="text-slate-500 text-sm italic">Compare Betweenness vs Eigenvector Centrality across nodes</p>
+              </div>
+              
+              <div className="h-[400px]">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={filteredData.sort((a, b) => b[metric.key] - a[metric.key]).slice(0, 20)}>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                  <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                     <XAxis 
-                      dataKey="Label" 
-                      hide={filteredData.length > 10} 
-                      fontSize={10} 
-                      axisLine={false}
-                      tickLine={false}
+                      type="number" 
+                      dataKey="Betweenness" 
+                      name="Betweenness" 
+                      unit="" 
+                      label={{ value: 'Betweenness', position: 'insideBottom', offset: -10 }}
                     />
                     <YAxis 
-                      axisLine={false}
-                      tickLine={false}
-                      fontSize={12}
+                      type="number" 
+                      dataKey="Eigenvector" 
+                      name="Eigenvector" 
+                      unit="" 
+                      label={{ value: 'Eigenvector', angle: -90, position: 'insideLeft' }}
                     />
-                    <Tooltip 
-                      contentStyle={{ 
-                        borderRadius: '12px', 
-                        border: 'none', 
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.1)' 
-                      }}
-                    />
-                    <Bar 
-                      dataKey={metric.key} 
-                      fill={metric.color} 
-                      radius={[4, 4, 0, 0]}
-                      animationDuration={1000}
-                    />
-                  </BarChart>
+                    <ZAxis type="number" dataKey="Degree" range={[60, 400]} name="Degree" />
+                    <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                    <Legend />
+                    {currentCategories.map((cat, idx) => (
+                      <Scatter
+                        key={cat}
+                        name={cat}
+                        data={data.filter(d => (groupingMode === 'original' ? d.Category : d.LouvainCommunity) === cat)}
+                        fill={`hsl(${idx * 137.5}, 70%, 50%)`}
+                      />
+                    ))}
+                  </ScatterChart>
                 </ResponsiveContainer>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Global Metric Distribution (Scatter) */}
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 space-y-6">
-          <div className="space-y-1">
-            <h2 className="text-xl font-bold tracking-tight">Metric Relationships</h2>
-            <p className="text-slate-500 text-sm italic">Compare Betweenness vs Eigenvector Centrality across nodes</p>
+          </>
+        ) : (
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 flex flex-col h-[70vh] overflow-hidden">
+             <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+                <div className="flex items-center gap-3">
+                  <Maximize2 className="w-4 h-4 text-slate-400" />
+                  <span className="text-sm font-bold text-slate-600">Interaktivna mrežna povezanost (Force-Directed Graph)</span>
+                </div>
+                <div className="flex items-center gap-4 text-xs">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                    <span className="text-slate-500">Čvorovi (Članovi)</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-4 h-0.5 bg-slate-300"></div>
+                    <span className="text-slate-500">Veze</span>
+                  </div>
+                </div>
+             </div>
+             <div className="flex-1 min-h-0 relative bg-slate-900">
+               <ForceGraph2D
+                 ref={graphRef}
+                 graphData={graphData}
+                 nodeLabel={(node: any) => `
+                   <div class="px-2 py-1 bg-black text-white text-xs rounded border border-white/20">
+                     <b>${node.Label}</b><br/>
+                     Category: ${node.Category}<br/>
+                     Degree: ${node.Degree}
+                   </div>
+                 `}
+                 nodeColor={node => (node as any).color}
+                 nodeRelSize={6}
+                 linkColor={() => 'rgba(255, 255, 255, 0.2)'}
+                 linkWidth={link => (link as any).value || 1}
+                 backgroundColor="#0f172a"
+                 onNodeClick={(node: any) => {
+                    graphRef.current?.centerAt(node.x, node.y, 400);
+                    graphRef.current?.zoom(4, 400);
+                 }}
+               />
+             </div>
+             <div className="p-4 border-t border-slate-100 bg-white text-xs text-slate-500 flex justify-between">
+                <p>Pomaknite čvorove za interakciju. Skrolajte za zoom. Kliknite na čvor za fokusiranje.</p>
+                <p className="font-mono">{graphData.nodes.length} Nodes | {graphData.links.length} Edges</p>
+             </div>
           </div>
-          
-          <div className="h-[400px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                <XAxis 
-                  type="number" 
-                  dataKey="Betweenness" 
-                  name="Betweenness" 
-                  unit="" 
-                  label={{ value: 'Betweenness', position: 'insideBottom', offset: -10 }}
-                />
-                <YAxis 
-                  type="number" 
-                  dataKey="Eigenvector" 
-                  name="Eigenvector" 
-                  unit="" 
-                  label={{ value: 'Eigenvector', angle: -90, position: 'insideLeft' }}
-                />
-                <ZAxis type="number" dataKey="Degree" range={[60, 400]} name="Degree" />
-                <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                <Legend />
-                {categories.map((cat, idx) => (
-                  <Scatter
-                    key={cat}
-                    name={cat}
-                    data={data.filter(d => d.Category === cat)}
-                    fill={`hsl(${idx * 137.5}, 70%, 50%)`}
-                  />
-                ))}
-              </ScatterChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
+        )}
       </main>
     </div>
   );

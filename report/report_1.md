@@ -29,7 +29,7 @@ Podaci korišteni u ovoj analizi prikupljeni su iz centraliziranog Google Sheets
 ### 2.2 Instrumentalizacija
 Za analizu je korišten razvijeni "Network Metrics Visualizer" stog:
 - **Backend:** Google Sheets API za sinkronizaciju podataka.
-- **Analitički moduli:** Proračuni centralnosti stupnja (Degree), centralnosti bliskosti (Closeness) i centralnosti posredovanja (Betweenness).
+- **Analitički moduli:** Proračuni centralnosti stupnja (Degree), centralnosti bliskosti (Closeness), centralnosti posredovanja (Betweenness) te **Louvain algoritam** za automatsko otkrivanje zajednica (community detection) na temelju modularnosti grafa.
 - **Vizualizacija:** Recharts biblioteka za mapiranje klastera (kategorija).
 
 ### 2.3 Protok podataka (App Flow Diagram)
@@ -114,6 +114,7 @@ Unatoč robusnosti primijenjenih alata, važno je adresirati određena ograniče
 - **Vremenski statični podaci (Snapshot Bias):** Prikazana mreža je "isječak" u vremenu. Društvene mreže su fluidne, te se položaj čvorova može značajno promijeniti nakon završenih projektnih ciklusa.
 - **Težinska uniformnost:** Iako koristimo *Weighted Degree*, sustav možda ne razlikuje u potpunosti emocionalni intenzitet ili kvalitetu suradnje, već primarno njezinu kvantitetu i prisutnost.
 - **Digitalna isključenost:** Postoji mogućnost da su članovi koji rjeđe koriste digitalne alate za koordinaciju podzastupljeni u tabličnim podacima, što može rezultirati nižim vrijednostima centralnosti koje ne odgovaraju njihovom stvarnom "offline" utjecaju.
+- **Selektivna pristranost (Self-selection Bias):** U anketi su sudjelovali isključivo članovi koji su izrazili želju i motivaciju za sudjelovanjem. Rezultati stoga nisu objektivni prikaz cjelokupnog članstva udruge, već reprezentiraju dinamiku unutar podskupine aktivnih i angažiranih članova koji su ispunili anketu.
 
 ## 5. Rasprava
 

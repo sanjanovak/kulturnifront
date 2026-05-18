@@ -19,7 +19,7 @@ Udruga Kulturni front predstavlja složen sustav u kojem suradnja nadilazi forma
 ## 2. Metodologija
 
 ### 2.1 Prikupljanje podataka
-Podaci su generirani putem Google Sheets dokumenta (`1TqRayTN2RE8...`) koji bilježi interakcije članova tijekom različitih projekata udruge. Podaci su kategorizirani prema tipu aktivnosti (Organizacija vs. Sudjelovanje) i specifičnom događaju (npr. Liburnicon, koncerti, radionice).
+Podaci su generirani putem Google Sheets dokumenta (`1TqRayTN2RE8...`) koji bilježi interakcije članova tijekom različitih projekata udruge. Podaci su kategorizirani prema tipu aktivnosti (Organizacija vs. Sudjelovanje) i specifičnom događaju (npr. Liburnicon, team building, radionice).
 
 ### 2.2 Instrumentalizacija
 Za analizu je korišten razvijeni "Network Metrics Visualizer" stog:

@@ -12,6 +12,8 @@ provider.addScope('https://www.googleapis.com/auth/spreadsheets.readonly');
 let isSigningIn = false;
 let cachedAccessToken: string | null = null;
 
+export const getIsSigningIn = () => isSigningIn;
+
 export const initAuth = (
   onAuthSuccess?: (user: User, token: string) => void,
   onAuthFailure?: () => void
@@ -33,6 +35,7 @@ export const initAuth = (
 };
 
 export const googleSignIn = async (): Promise<{user: User; accessToken: string} | null> => {
+  if (isSigningIn) return null;
   try {
     isSigningIn = true;
     const result = await signInWithPopup(auth, provider);
@@ -44,6 +47,10 @@ export const googleSignIn = async (): Promise<{user: User; accessToken: string} 
     cachedAccessToken = credential.accessToken;
     return {user: result.user, accessToken: cachedAccessToken};
   } catch (error: any) {
+    if (error.code === 'auth/cancelled-popup-request' || error.code === 'auth/popup-closed-by-user') {
+      console.warn('Sign in popup closed or cancelled.');
+      return null;
+    }
     console.error('Sign in error:', error);
     throw error;
   } finally {

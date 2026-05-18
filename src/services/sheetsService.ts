@@ -20,7 +20,8 @@ export const fetchSpreadsheetData = async (accessToken: string, spreadsheetId: s
   );
 
   if (!spreadsheetResponse.ok) {
-    throw new Error('Failed to fetch spreadsheet metadata');
+    const errorBody = await spreadsheetResponse.text().catch(() => 'No error body');
+    throw new Error(`Failed to fetch spreadsheet metadata: ${spreadsheetResponse.status} ${spreadsheetResponse.statusText}. Details: ${errorBody}`);
   }
 
   const spreadsheet = await spreadsheetResponse.json();
@@ -40,7 +41,8 @@ export const fetchSpreadsheetData = async (accessToken: string, spreadsheetId: s
   );
 
   if (!valuesResponse.ok) {
-    throw new Error('Failed to fetch spreadsheet values');
+    const errorBody = await valuesResponse.text().catch(() => 'No error body');
+    throw new Error(`Failed to fetch spreadsheet values: ${valuesResponse.status} ${valuesResponse.statusText}. Details: ${errorBody}`);
   }
 
   const data = await valuesResponse.json();

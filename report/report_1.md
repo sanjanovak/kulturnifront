@@ -42,17 +42,29 @@ Analiza pokazuje jasnu bifurkaciju mreže:
 ### 3.2 Dinamika po događajima
 Svaki event unutar udruge stvara privremeni klaster. Vidljivo je da se najveća suradnja (tko s kim najviše surađuje) događa u fazi pripreme velikih manifestacija, gdje *Eigenvector* centralnost raste kod koordinatora volontera.
 
-## 4. Rasprava
+## 4. Socio-dinamička analiza i funkcioniranje udruge kao zatvorenog sustava
+
+Na temelju predočenih podataka, rad udruge može se analizirati kroz prizmu razvoja odnosa unutar zatvorenih društvenih mreža. Rezultati upućuju na to da sudjelovanje na eventima (posebno team buildingu i radionicama) služi kao primarni mehanizam za pretvaranje pasivnih poznanstava u aktivne suradničke veze.
+
+### 4.1 Utjecaj evenata na razvijanje povezanosti
+Podaci sugeriraju da učestalost sudjelovanja na različitim tipovima evenata izravno utječe na koheziju grupe. Dok organizacija stvara "jake veze" (čvrsta suradnja), samo sudjelovanje generira "slabe veze" koje su, prema sociološkim teorijama (npr. Granovetter), ključne za protok novih ideja. Bez redovitih evenata koji miješaju različite klastere, udruga bi riskirala postati hermetički zatvoren sustav s visokom redundancijom informacija.
+
+### 4.2 Udruga kao ključni faktor ili zatvorena mreža?
+Pitanje je postaje li udruga, kao zatvorena mreža, izolirani faktor koji gubi utjecaj na širu zajednicu. Analiza centralnosti ukazuje na suprotno:
+- **Zadržavanje utjecaja:** Udruga ne postaje "slijepa ulica" društvenog kapitala jer rezultati pokazuju stalnu fluktuaciju čvorova s visokim stupnjem povezivanja. 
+- **Uloga poveznice:** Zahvaljujući eventima koji služe kao "ulazni kanali", mreža ostaje polu-propusna. Ključni akteri unutar udruge ne postaju izolirani moćnici, već njihova uloga "poveznica" raste s brojem uspješno provedenih evenata, čime se potvrđuje da udruga zadržava značajan utjecaj na razvoj društvenih odnosa u svojoj domeni.
+
+## 5. Rasprava
 
 Rezultati ukazuju na to da je Kulturni front "mreža malog svijeta" (small-world network). Većina članova može dosegnuti bilo kojeg drugog člana preko najviše dva do tri posrednika u organizacijskom timu. Visoka korelacija između *Betweenness* i *Eigenvector* metrika (vidljiva na Scatter grafikonu aplikacije) potvrđuje hipotezu da su najaktivniji organizatori ujedno i najutjecajniji komunikatori.
 
-## 5. Zaključak
+## 6. Zaključak
 
 Ova aplikacija omogućuje udruzi Kulturni front da prepozna potencijalno "izolirane" članove i ojača suradnju između sekcija. Jasna distinkcija između organizacije i sudjelovanja pomaže u identifikaciji novih lidera – onih koji imaju visoku centralnost u sudjelovanju, ali još nisu integrirani u organizacijske mostove. Budući rad trebao bi uključiti vremensku analizu (temporal SNA) kako bi se pratilo kako se ovi odnosi razvijaju kroz godine.
 
 ---
 
-## 6. Literatura (References)
+## 7. Literatura (References)
 
 - Barabási, A. L. (2016). *Network Science*. Cambridge University Press.
 - Newman, M. (2018). *Networks*. Oxford University Press.

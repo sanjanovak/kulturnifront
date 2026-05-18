@@ -16,7 +16,7 @@ Ovaj izvještaj predstavlja znanstvenu analizu dinamike društvenih mreža unuta
 
 Udruga Kulturni front predstavlja složen sustav u kojem suradnja nadilazi formalne strukture. Socijalna mrežna analiza (SNA - Social Network Analysis) omogućuje nam da vizualiziramo i kvantificiramo te nevidljive niti suradnje. Cilj ovog rada je istražiti kako specifični događaji (eventi) oblikuju mrežu poznanstava i suradnji, te kako uloga u organizaciji utječe na poziciju pojedinca unutar društvenog grafa.
 
-## 2. Metodologija
+## 2. Metoda
 
 ### 2.1 Prikupljanje podataka
 Podaci su generirani putem Google Sheets dokumenta (`1TqRayTN2RE8...`) koji bilježi interakcije članova tijekom različitih projekata udruge. Podaci su kategorizirani prema tipu aktivnosti (Organizacija vs. Sudjelovanje) i specifičnom događaju (npr. Liburnicon, team building, radionice).
@@ -27,7 +27,36 @@ Za analizu je korišten razvijeni "Network Metrics Visualizer" stog:
 - **Analitički moduli:** Proračuni centralnosti stupnja (Degree), centralnosti bliskosti (Closeness) i centralnosti posredovanja (Betweenness).
 - **Vizualizacija:** Recharts biblioteka za mapiranje klastera (kategorija).
 
-### 2.3 Određivanje metrika
+### 2.3 Protok podataka (App Flow Diagram)
+
+U nastavku je prikazan tehnički dijagram protoka podataka od autentifikacije do vizualne reprezentacije:
+
+```mermaid
+graph TD
+    A[Korisnik] -->|Prijava: Google Auth| B(Firebase Authentication)
+    B -->|OAuth Access Token| C{Google Sheets API}
+    C -->|Sirovi podaci iz tablice| D[Network Data Service]
+    D -->|Čišćenje i mapiranje polja| E[React Component State]
+    E -->|Podaci za odabrani klaster| F[Dashboard UI]
+    F -->|Renderiranje| G[Interaktivni Recharts Grafikoni]
+    G -->|Povratna informacija| A
+    
+    subgraph "Metrička obrada"
+    D1[Degree/Weighted]
+    D2[Closeness]
+    D3[Betweenness]
+    D4[Eigenvector]
+    end
+    
+    D --> D1
+    D --> D2
+    D --> D3
+    D --> D4
+```
+
+*Slika 1. Arhitektura protoka podataka (App Flow): Dijagram prikazuje ciklus od inicijalne korisničke autentifikacije putem Google servisa, preko sigurnog dohvaćanja podataka pomoću OAuth tokena, do granulirane analize četiriju ključnih mrežnih metrika. Network Data Service transformira nestrukturirane ćelije iz tablice u strukturirane objekte koji omogućuju dinamičko filtriranje po klasterima i real-time vizualizaciju odnosa unutar udruge.*
+
+### 2.4 Određivanje metrika
 - **Stupanj (Degree):** Broj ljudi s kojima je pojedinac izravno surađivao.
 - **Težinski stupanj (Weighted Degree):** Intenzitet suradnje (učestalost zajedničkog rada na više projekata).
 - **Svojstvena centralnost (Eigenvector):** Ne gleda samo koliko ljudi poznajete, već koliko su ti ljudi "važni" u mreži.

@@ -2,7 +2,44 @@
 
 Ova aplikacija omogućuje vizualizaciju mrežnih metrika iz Google tablica s naglaskom na analizu društvenih odnosa i strukture mreže.
 
-![Povezanost društvenih odnosa](./src/assets/images/social_network_connectivity_1779108480199.png)
+## Rezultati Mrežne Analize: Udruga Kulturni Front
+
+Kao dio ove vizualizacijske platforme, provedena je sustavna sociometrijska i mrežna analiza udruge **Kulturni front**, a rezultati su mapirani na kognitivne i formalne mrežne strukture kroz tri ključna modela:
+
+### 1. Društvena mreža (Neformalno druženje i posjeti)
+Ova dimenzija prikazuje neformalno povezivanje i koheziju članova izvan formalnih projekata udruge.
+
+![Društvena mreža udruge Kulturni front](./src/assets/images/drustvena_mreza_posjeti_1780254962111.png)
+
+*Slika 1: Cjeloviti graf neformalnih druženja i posjeta. Narančasti čvorovi tvore iznimno čvrstu kohezijsku jezgru (Mravac, Moreno, Cer, Margo, Kunštek), dok su plavi čvorovi periferniji.*
+
+![Slobodno vrijeme i druženje članova](./src/assets/images/drustveno_druzenje_mreza_1780257187388.png)
+
+*Slika 2: Neformalni susreti i zajedničke klupske aktivnosti koje čine temeljno emocionalno vezivo udruge.*
+
+---
+
+### 2. Organizacijska mreža (Suradnja na eventima)
+Grafika formalne suradnje prikazuje funkcionalnu podjelu uloga i stabilne radne grupe rekonstruirane s obzirom na projektnu suradnju.
+
+![Organizacijska mreža suradnje na eventima](./src/assets/images/organizacijska_mreza_suradnja_1780254983064.png)
+
+*Slika 3: Struktura suradnje na projektima (zeleni klaster za kreativne radionice, narančasti za logističku operativnu kralježnicu, plavi za teorijski i tehnički krug).*
+
+![Organizacijska suradnja i debate](./src/assets/images/organizacijska_suradnja_event_1780257207732.png)
+
+*Slika 4: Javna predavanja, debate i tribine u sklopu projekta Coffee House Debates oslanjaju se na preciznu projektnu suradnju.*
+
+---
+
+### 3. Cjelovita mreža povezanosti (Sinteza)
+Ujedinjeni težinski model (Unified Relationship Network) prikazuje cjelovitu sinergiju neformalnih interakcija i službenog rada, jasno identificirajući dualne liderske stupove udruge (Mravac i Cer).
+
+![Cjelovita mreža povezanosti članova Kulturnog fronta](./src/assets/images/mreza_povezanosti_ukupno_1780255001411.png)
+
+*Slika 5: Cjeloviti težinski graf ujedinjenih mrežnih veza. Veličina čvora predstavlja utjecaj člana (Weighted Degree), dok debljina veza odražava ukupnu učestalost i dubinu kontakata.*
+
+---
 
 ## Opis aplikacije
 

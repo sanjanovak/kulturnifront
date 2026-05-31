@@ -101,6 +101,12 @@ Ova dimenzija mreže rekonstruirana je na temelju zabilježenih neformalnih inte
 
 *Slika 2. Vizualizacija društvene mreže (druženje i posjeti): Graf prikazuje srodnost i neformalne kontakte. Primjetan je gusti centralno-desni blok s "toplim" narančastim čvorovima koji provode najviše slobodnog vremena zajedno, dok je lijeva strana (plava) znatno raspršenija i predstavlja periferne članove.*
 
+U nastavku je predočena prekrasna fotografska ilustracija koja zorno dočarava neformalnu atmosferu druženja i snažno socijalno vezivo u udruzi:
+
+![Fotografija društvenog druženja članova Kulturnog fronta](./src/assets/images/drustveno_druzenje_mreza_1780257187388.png)
+
+*Slika 3. Emocionalno i socijalno vezivo udruge: Neformalni susreti, društvene igre i opuštena druženja u klupskim prostorijama čine temeljnu pokretačku snagu socijalne kohezije unutar udruge Kulturni front.*
+
 **Sociometrijska interpretacija društvene mreže:**
 - **Središnja jezgra (Social Core):** U desnom, gušće povezanim dijelu grafa, uočavamo iznimno čvrstu koheziju između aktera kao što su **Mravac**, **Moreno**, **Cer**, **Margo** i **Kunštek**. Ovi članovi tvore primarnu kliku (social clique) s izrazito jakim weights (težinama) veza, što pokazuje da se jezgra udruge u privatno vrijeme neprestano preklapa i intenzivno druži. Oni generiraju socijalnu energiju i neformalnu integraciju tima.
 - **Klasterizacija (Zajednice):** Grafika zorno identificira snažan "narančasti" blok (Domenika, Leso, Cer, Moreno, Mravac, Margo, Kunštek, Ren) koji funkcionira kao homogeno emotivno i socijalno tijelo. Nasuprot tome, "plavi" akteri su pozicionirani više na krajevima ili duž lijeve strane.
@@ -112,7 +118,13 @@ Organizacijska mreža filtrira isključivo operativne, koordinacijske i tehničk
 
 ![Organizacijska mreža suradnje na eventima](./src/assets/images/organizacijska_mreza_suradnja_1780254983064.png)
 
-*Slika 3. Vizualizacija organizacijske mreže: Graf formalne suradnje prikazuje funkcionalnu podjelu uloga. Boje označavaju stabilne radne skupine rekonstruirane s obzirom na projektnu suradnju, dok debljina veza upućuje na intenzitet zajedničkog operativnog rada.*
+*Slika 4. Vizualizacija organizacijske mreže: Graf formalne suradnje prikazuje funkcionalnu podjelu uloga. Boje označavaju stabilne radne skupine rekonstruirane s obzirom na projektnu suradnju, dok debljina veza upućuje na intenzitet zajedničkog operativnog rada.*
+
+U nastavku je prikazana fotografija koja pokazuje formalne strukture udruge na djelu — javne debate, koordinaciju i visoku razinu organizacijske posvećenosti:
+
+![Fotografija organizacijske suradnje i javnih debata Kulturnog fronta](./src/assets/images/organizacijska_suradnja_event_1780257207732.png)
+
+*Slika 5. Operativna snaga udruge: Javne tribine, stručna predavanja i debate u sklopu projekta Coffee House Debates oslanjaju se na preciznu tehničku, komunikacijsku i logističku suradnju radnih timova.*
 
 **Sociometrijska interpretacija organizacijske mreže:**
 - **Preraspodjela utjecaja:** Uspoređujući ovaj graf s društvenom mrežom, vidimo dramatičnu promjenu u strukturi moći i raspodjeli aktivnosti. Članovi koji su bili na periferiji u neformalnom druženju, poput **Valentine**, ovdje postaju ključni operativni stupovi. Valentina i **Mravac** tvore koordinacijsku os koja drži cijelu mrežu u ravnoteži.
@@ -148,7 +160,7 @@ Kako bismo dobili potpunu mrežnu sintezu, razvili smo model koji ujedinjuje i f
 
 ![Cjelovita mreža povezanosti članova Kulturnog fronta](./src/assets/images/mreza_povezanosti_ukupno_1780255001411.png)
 
-*Slika 4. Mreža povezanosti članova "Kulturni front" (sinteza suradnje i druženja): Veličina svakog čvora predstavlja jačinu i utjecaj člana (Weighted Degree), dok debljina veza (edges) odražava ukupnu učestalost i dubinu kontakata kroz rad i privatno vrijeme.*
+*Slika 6. Mreža povezanosti članova "Kulturni front" (sinteza suradnje i druženja): Veličina svakog čvora predstavlja jačinu i utjecaj člana (Weighted Degree), dok debljina veza (edges) odražava ukupnu učestalost i dubinu kontakata kroz rad i privatno vrijeme.*
 
 **Analiza cjelovite mrežne sinteze:**
 - **Dva stupa organizacije:** Cjelovita mreža jasno identificira **Mravca** i **Cera** kao dva gigantska čvora u središtu mreže. Oni tvore dualnu lidersku strukturu — dok je Mravac operativni i izvršni vođa, Cer je intelektualni, mentorski i diskusijski centar gravitacije. Njihova međusobna suradnja (označena izrazito debelom vezom) definira stabilnost čitavog sustava.
@@ -162,7 +174,7 @@ Za usporedbu s automatski detektiranim zajednicama samo na bazi modularnosti org
 
 ![Detekcija zajednica u mreži Kulturnog fronta](./src/assets/images/network_community_detection_1779113334005.png)
 
-*Slika 5. Vizualizacija detekcije zajednica: Različite boje predstavljaju automatki identificirane radne klastere. Gustoća veza unutar boja ukazuje na visoku razinu unutar-sekcijske kohezije, dok inter-cluster veze (mostovi) pokazuju kako se znanje i resursi dijele između projekata poput Liburnicona, team buildinga i edukativnih radionica.*
+*Slika 7. Vizualizacija detekcije zajednica: Različite boje predstavljaju automatki identificirane radne klastere. Gustoća veza unutar boja ukazuje na visoku razinu unutar-sekcijske kohezije, dok inter-cluster veze (mostovi) pokazuju kako se znanje i resursi dijele između projekata poput Liburnicona, team buildinga i edukativnih radionica.*
 
 Analiza zajednica potvrđuje da udruga nije monolitna, već se sastoji od modularnih jedinica koje mogu funkcionirati autonomno, ali su međusobno povezane preko ključnih aktera (vidi poglavlje 3.4), čime se osigurava stabilnost cijelog sustava.
 

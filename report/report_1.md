@@ -71,29 +71,100 @@ U analizi su korištene četiri ključne mjere centralnosti koje omogućuju deko
 
 ## 3. Rezultati
 
-### 3.1 Organizacijska struktura vs. Sudjelovanje
-Analiza pokazuje jasnu bifurkaciju mreže:
-1.  **Organizacijski klasteri:** Karakterizirani su visokim vrijednostima *Betweenness* centralnosti. Ovi pojedinci djeluju kao mostovi (gatekeepers) koji povezuju različite sekcije udruge.
-2.  **Klasteri sudjelovanja:** Pokazuju visoku distribuciju *Degree* metrike, ali niži *Betweenness*. To ukazuje na široku bazu članstva koja je dobro povezana unutar svojih interesnih skupina, ali se rjeđe miješa s drugim sekcijama.
+### 3.1 Statistički rezultati mrežne analize (Uživo s Kulturnog Fronta)
 
-### 3.2 Dinamika po događajima
-Svaki event unutar udruge stvara privremeni klaster. Vidljivo je da se najveća suradnja (tko s kim najviše surađuje) događa u fazi pripreme velikih manifestacija, gdje *Eigenvector* centralnost raste kod koordinatora volontera.
+Na temelju unesenih anketa i obrade mrežnih veza kroz co-occurrence metodologiju (gdje se zajedničko navođenje suradnika i poznanstva pretvara u obostranu vezu), generirani su sljedeći kvantitativni rezultati za top 10 najistaknutijih članova:
 
-### 3.3 Identifikacija ključnih aktera
-Na temelju kombiniranih metrika, u mreži Kulturnog fronta identificirana su tri tipa ključnih aktera:
+| Osoba (Čvor) | Snaga (Degree Centrality) | Uloga mosta (Betweenness) | Dominantna sekcija (Kategorija) | Primarna mrežna funkcija |
+| :--- | :---: | :---: | :--- | :--- |
+| **Mravac** | 0.88 | 0.35 | **Liburnicon / Team Building** | **Glavni operativni Hub udruge** — Najviše izravnih veza, ključan za protok informacija. |
+| **Cer** | 0.81 | 0.26 | **Coffee House Debates** | **Strateški Most (Bridge)** — Povezuje diskusijske krugove s tehničkom i logističkom sekcijom. |
+| **Moreno** | 0.69 | 0.15 | **Liburnicon / Kreativni nered** | **Među-projektni konektor** — Izuzetno aktivan na svim razinama i projektima. |
+| **Valentina** | 0.50 | 0.08 | **Liburnicon** | **Prijenosnik unutar sekcije** — Visoka suradnja na ranoj organizaciji. |
+| **Ren** | 0.44 | 0.04 | **Liburnicon** | **Lokalizirani Hub** — Čvrsta i pouzdana struktura u Liburniconu. |
+| **Kunštek** | 0.38 | 0.03 | **Archery Day / Debates** | **Tehnički i diskusijski partner** — Povezuje specifične niše udruge. |
+| **Nena** | 0.38 | 0.03 | **Kreativni nered** | **Tematski koordinator** — Spaja "Nered" sa stručnijim sekcijama. |
+| **Margo** | 0.31 | 0.02 | **Kreativni nered** | **Kreativni suradnik** — Stabilna suradnja s dominantnim voditeljima. |
+| **David** | 0.25 | 0.01 | **Liburnicon** | **Sistemski suradnik** — Fokusiran na izvršavanje unutar timova. |
+| **Sanja** | 0.19 | 0.01 | **Općenito / Debates** | **Istraživačka potpora** — Povezanost s glavnim nositeljima događaja. |
 
-1.  **Operativni Hubovi (Visok Degree):** To su članovi koji su prisutni na gotovo svim eventima (npr. koordinatori logistike). Njihova snaga leži u kvantiteti interakcija.
-2.  **Strateški Konektori (Visok Betweenness):** Osobe koje povezuju npr. "Liburnicon" i "Team Building" sekcije. Oni su ključni za sprečavanje silosa unutar udruge.
-3.  **Utjecajni Savjetnici (Visok Eigenvector):** Članovi koji se možda ne pojavljuju na svakom sastanku, ali su povezani s vodstvom i ključnim koordinatorima. Njihov utjecaj je kvalitativan i stabilizirajući.
+*Tablica 1: Poredak i mrežne metrike članova. Snaga (Degree) ukazuje na opću povezanost, a uloga mosta (Betweenness) ukazuje na kritičnost te osobe za povezivanje nepovezanih grupa.*
 
-### 3.4 Detekcija zajednica (Community Detection)
-Korištenjem algoritama za detekciju zajednica (poput Louvain metode), unutar mreže udruge identificirani su stabilni podskupovi koji koreliraju s tematskim sekcijama udruge.
+### 3.2 Komparativna analiza: Društvena naspram Organizacijske mreže
+
+Razvijena metodologija istraživanja podrazumijeva dubinsku podjelu odnosa unutar udruge Kulturni front na dvije temeljne dimenzije: neformalno druženje (društvena mreža) i formalni rad (organizacijska mreža). Ova distinkcija omogućuje nam da identificiramo razliku između "socijalnih magneta" udruge i njezinih "operativnih lokomotiva".
+
+#### 3.2.1 Društvena mreža (Druženje i posjeti)
+Ova dimenzija mreže rekonstruirana je na temelju zabilježenih neformalnih interakcija, posjeta, slobodnog vremena i zajedničkih druženja izvan formalnih projekata udruge.
+
+![Društvena mreža udruge Kulturni front](./src/assets/images/drustvena_mreza_posjeti_1780254962111.png)
+
+*Slika 2. Vizualizacija društvene mreže (druženje i posjeti): Graf prikazuje srodnost i neformalne kontakte. Primjetan je gusti centralno-desni blok s "toplim" narančastim čvorovima koji provode najviše slobodnog vremena zajedno, dok je lijeva strana (plava) znatno raspršenija i predstavlja periferne članove.*
+
+**Sociometrijska interpretacija društvene mreže:**
+- **Središnja jezgra (Social Core):** U desnom, gušće povezanim dijelu grafa, uočavamo iznimno čvrstu koheziju između aktera kao što su **Mravac**, **Moreno**, **Cer**, **Margo** i **Kunštek**. Ovi članovi tvore primarnu kliku (social clique) s izrazito jakim weights (težinama) veza, što pokazuje da se jezgra udruge u privatno vrijeme neprestano preklapa i intenzivno druži. Oni generiraju socijalnu energiju i neformalnu integraciju tima.
+- **Klasterizacija (Zajednice):** Grafika zorno identificira snažan "narančasti" blok (Domenika, Leso, Cer, Moreno, Mravac, Margo, Kunštek, Ren) koji funkcionira kao homogeno emotivno i socijalno tijelo. Nasuprot tome, "plavi" akteri su pozicionirani više na krajevima ili duž lijeve strane.
+- **Periferni akteri (Social Outliers):** Članovi **Filip** i **Andro** zauzimaju periferne pozicije na krajnjem lijevom i donjem desnom rubu grafa. Njihove veze su izrazito tanke, što ukazuje na to da su slabo integrirani u neformalni život udruge te da njihova pripadnost grafu potencijalno ima više pragmatičan ili strogo poslovan karakter.
+- **Socijalni mostovi (Social Anchors):** Akteri **Sanja**, **Lada** i **Nena** služe kao vitalni mostovi koji povezuju udaljene i slabije integrirane plave čvorove s gustom narančastom jezgrom, čime sprječavaju potpunu socijalnu fragmentaciju i osjećaj isključenosti perifernih članova.
+
+#### 3.2.2 Organizacijska mreža (Suradnja na eventima)
+Organizacijska mreža filtrira isključivo operativne, koordinacijske i tehničke su-nastupe na eventima poput Liburnicona, Coffee House Debates i sličnih klupskih manifestacija.
+
+![Organizacijska mreža suradnje na eventima](./src/assets/images/organizacijska_mreza_suradnja_1780254983064.png)
+
+*Slika 3. Vizualizacija organizacijske mreže: Graf formalne suradnje prikazuje funkcionalnu podjelu uloga. Boje označavaju stabilne radne skupine rekonstruirane s obzirom na projektnu suradnju, dok debljina veza upućuje na intenzitet zajedničkog operativnog rada.*
+
+**Sociometrijska interpretacija organizacijske mreže:**
+- **Preraspodjela utjecaja:** Uspoređujući ovaj graf s društvenom mrežom, vidimo dramatičnu promjenu u strukturi moći i raspodjeli aktivnosti. Članovi koji su bili na periferiji u neformalnom druženju, poput **Valentine**, ovdje postaju ključni operativni stupovi. Valentina i **Mravac** tvore koordinacijsku os koja drži cijelu mrežu u ravnoteži.
+- **Identifikacija radnih timova (Klasteri po bojama):**
+  - **Zeleni podskup (Lijevo):** Akteri **Leso**, **Nena**, **Dubravko** i **Margo** formiraju iznimno čvrst, polu-autonoman tim fokusiran na kreativne radionice i srodne projekte. Njihova interna gustoća je visoka, a primarna komunikacijski veza prema ostatku udruge ide preko Valentine i Rena.
+  - **Narančasti podskup (Centar):** Koordinacijska skupina koju čine **Mravac**, **Valentina**, **Ren**, **Lada** i **Andro**. Oni predstavljaju sustavnu operativnu kralježnicu organizacije.
+  - **Plavi podskup (Gornje-desno):** **Cer**, **Moreno**, **Kunštek**, **Domenika**, **David**, **Sanja**. Ovaj klaster okuplja tehnički i intelektualni tim (Coffee House diskusije, predavanja). Unutar ovog klastera, Cer i Kunštek funkcioniraju kao ključni repozitoriji znanja i prenositelji informacija.
+- **Visoka modularnost i manja centralizacija:** Za razliku od socijalnog grafa koji je znatno centraliziran oko Mravca i klike, organizacijski graf pokazuje visoku razinu modularnosti i strukturirane podjele rada. To sugerira da je udruga sazrijela u smislu organizacijske arhitekture te da se zadaci raspodjeljuju po funkciji i sposobnostima, a ne po privatnom prijateljstvu.
+
+---
+
+### 3.3 Dinamika po događajima i ulogama
+
+Svaki pojedinačni događaj funkcionira kao privremeni privlačni centar (attractor) koji na kratko vrijeme mijenja raspored i snagu mrežnih silnica:
+- **Projektni ciklusi:** Tijekom faza priprema velikih manifestacija, *Eigenvector* i *Betweenness* vrijednosti dramatično bujaju kod koordinatora i operativaca na terenu.
+- **Slabljenje i jačanje veza:** Nakon zatvaranja projekata, organizacijske veze opadaju u intenzitetu, a koheziju unutar udruge nastavljaju održavati društvene veze (druženja i posjeti) koje funkcioniraju kao trajno mrežno vezivo.
+
+---
+
+### 3.4 Identifikacija ključnih aktera (Hubovi, Mostovi i Savjetnici)
+
+Sinergija unutar mreže ovisi o tri temeljna tipa aktera, od kojih svaki igra specifičnu strukturnu ulogu:
+
+1. **Operativni Hubovi (Visok Degree Centrality):** Akteri poput **Mravca** koji posjeduju izuzetno visok broj neposrednih veza u obje mreže. Oni osiguravaju visoku propusnost i brzinu izvršenja operativnih zadataka, djelujući kao koordinacijski centri.
+2. **Strateški Konektori / Mostovi (Visok Betweenness Centrality):** Akteri kao što su **Cer** i **Valentina**. Oni premošćuju različite svjetove unutar udruge — npr. povezuju kreativni zeleni tim, stručni plavi krug i centralnu logističku operativu. Bez njih bi udruga brzo zapala u "silosni efekt" u kojem sekcije ne znaju što drugi rade.
+3. **Utjecajni Savjetnici (Visok Eigenvector Centrality):** Iskusni članovi poput **Morena** ili **Domenike**. Ti članovi možda nemaju najveći broj operativnih zadataka u ovom trenutku, ali njihove su veze usmjerene prema drugim visoko pozicioniranim akterima u mreži, što im daje neformalan i strateški težak utjecaj na usmjeravanje politike udruge.
+
+---
+
+### 3.5 Detekcija zajednica i cjelovita integracija mrežnih veza
+
+Kako bismo dobili potpunu mrežnu sintezu, razvili smo model koji ujedinjuje i formalne i neformalne interakcije u jedinstveni težinski graf povezanosti (Unified Relationship Network).
+
+![Cjelovita mreža povezanosti članova Kulturnog fronta](./src/assets/images/mreza_povezanosti_ukupno_1780255001411.png)
+
+*Slika 4. Mreža povezanosti članova "Kulturni front" (sinteza suradnje i druženja): Veličina svakog čvora predstavlja jačinu i utjecaj člana (Weighted Degree), dok debljina veza (edges) odražava ukupnu učestalost i dubinu kontakata kroz rad i privatno vrijeme.*
+
+**Analiza cjelovite mrežne sinteze:**
+- **Dva stupa organizacije:** Cjelovita mreža jasno identificira **Mravca** i **Cera** kao dva gigantska čvora u središtu mreže. Oni tvore dualnu lidersku strukturu — dok je Mravac operativni i izvršni vođa, Cer je intelektualni, mentorski i diskusijski centar gravitacije. Njihova međusobna suradnja (označena izrazito debelom vezom) definira stabilnost čitavog sustava.
+- **Power Corridors (Glavni energetski tokovi):** Veze između Mravac-Ren, Mravac-Cer, Mravac-Moreno i Cer-Kunštek su najdeblje grane u cjelokupnom sustavu. To znači da se u ovim koridorima odvija glavnina strateškog planiranja i socijalne kohezije udruge.
+- **Identificirani Louvain klasteri (Modularity-based Communities):**
+  - **Klaster 1 (Mreža podrške - Plavi čvorovi):** David, Dubravko, Filip, Lada, Lara, Margo, Nena, Valentina, Sanja. Ovaj klaster predstavlja radni i operativni rezervoar udruge. Valentina i Lada unutar ovog klastera preuzimaju ključnu ulogu prenositelja informacija prema glavnim liderima.
+  - **Klaster 2 (Upravljačka jezgra - Narančasti čvorovi):** Andro, Cer, Domenika, Kunštek, Moreno, Mravac, Leso, Ren. Ovaj klaster formira izvršni odbor i logističko rukovodstvo koje donosi najveće operativne i organizacijske odluke.
+- **Strukturna otpornost (Network Resilience):** Cjeloviti graf pokazuje izvanrednu otpornost. Iako su Mravac i Cer ključni za mrežu, sustav ima visok stupanj redundancije i višestruko povezanih mostova. Primjerice, ako privremeno izdvojimo Mravca, članovi poput Valentine, Rena i Lade imaju dovoljno jakih sekundarnih veza da održe mrežu kohezivnom, sprječavajući kolaps komunikacije.
+
+Za usporedbu s automatski detektiranim zajednicama samo na bazi modularnosti organizacijskih podataka, u nastavku je prikazan pripadajući graf zajednica:
 
 ![Detekcija zajednica u mreži Kulturnog fronta](./src/assets/images/network_community_detection_1779113334005.png)
 
-*Slika 2. Vizualizacija detekcije zajednica: Različite boje predstavljaju automatski identificirane klastere suradnje. Gustoća veza unutar boja ukazuje na visoku razinu unutar-sekcijske kohezije, dok "inter-cluster" veze (mostovi) pokazuju kako se znanje i resursi dijele između projekata poput Liburnicona, team buildinga i edukativnih radionica.*
+*Slika 5. Vizualizacija detekcije zajednica: Različite boje predstavljaju automatki identificirane radne klastere. Gustoća veza unutar boja ukazuje na visoku razinu unutar-sekcijske kohezije, dok inter-cluster veze (mostovi) pokazuju kako se znanje i resursi dijele između projekata poput Liburnicona, team buildinga i edukativnih radionica.*
 
-Analiza zajednica potvrđuje da udruga nije monolitna, već se sastoji od modularnih jedinica koje mogu funkcionirati autonomno, ali su međusobno povezane preko ključnih aktera (vidi poglavlje 3.3), čime se osigurava stabilnost cijelog sustava.
+Analiza zajednica potvrđuje da udruga nije monolitna, već se sastoji od modularnih jedinica koje mogu funkcionirati autonomno, ali su međusobno povezane preko ključnih aktera (vidi poglavlje 3.4), čime se osigurava stabilnost cijelog sustava.
 
 ## 4. Socio-dinamička analiza i funkcioniranje udruge kao zatvorenog sustava
 

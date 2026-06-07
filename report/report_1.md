@@ -97,13 +97,11 @@ Razvijena metodologija istraživanja podrazumijeva dubinsku podjelu odnosa unuta
 #### 3.2.1 Društvena mreža (Druženje i posjeti)
 Ova dimenzija mreže rekonstruirana je na temelju zabilježenih neformalnih interakcija, posjeta, slobodnog vremena i zajedničkih druženja izvan formalnih projekata udruge.
 
-![Društvena mreža udruge Kulturni front][(./src/assets/images/drustvena_mreza_posjeti_1780254962111.png)](https://drive.google.com/drive/u/0/folders/15WszA37MS5wypKtkS11LgV9lrIoAPFhJ)
+![Društvena mreža udruge Kulturni front][(https://raw.githubusercontent.com/sanjanovak/kulturnifront/refs/heads/main/report/kulturni_front_mreza_ukupno.png)]
 
 *Slika 2. Vizualizacija društvene mreže (druženje i posjeti): Graf prikazuje srodnost i neformalne kontakte. Primjetan je gusti centralno-desni blok s "toplim" narančastim čvorovima koji provode najviše slobodnog vremena zajedno, dok je lijeva strana (plava) znatno raspršenija i predstavlja periferne članove.*
 
 U nastavku je predočena prekrasna fotografska ilustracija koja zorno dočarava neformalnu atmosferu druženja i snažno socijalno vezivo u udruzi:
-
-![Fotografija društvenog druženja članova Kulturnog fronta](./src/assets/images/drustveno_druzenje_mreza_1780257187388.png)
 
 ![Fotografija društvenog druženja članova Kulturnog fronta](https://raw.githubusercontent.com/sanjanovak/kulturnifront/refs/heads/main/report/kulturni_front_mreza_druzenje.png "Fotografija društvenog druženja članova Kulturnog fronta")
 
@@ -118,7 +116,7 @@ U nastavku je predočena prekrasna fotografska ilustracija koja zorno dočarava 
 #### 3.2.2 Organizacijska mreža (Suradnja na eventima)
 Organizacijska mreža filtrira isključivo operativne, koordinacijske i tehničke su-nastupe na eventima poput Liburnicona, Coffee House Debates i sličnih klupskih manifestacija.
 
-![Organizacijska mreža suradnje na eventima](./src/assets/images/organizacijska_mreza_suradnja_1780254983064.png)
+![Organizacijska mreža suradnje na eventima](https://raw.githubusercontent.com/sanjanovak/kulturnifront/refs/heads/main/report/kulturni_front_mreza_organizacija.png)
 
 *Slika 4. Vizualizacija organizacijske mreže: Graf formalne suradnje prikazuje funkcionalnu podjelu uloga. Boje označavaju stabilne radne skupine rekonstruirane s obzirom na projektnu suradnju, dok debljina veza upućuje na intenzitet zajedničkog operativnog rada.*
 

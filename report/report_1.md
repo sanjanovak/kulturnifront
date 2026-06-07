@@ -120,12 +120,6 @@ Organizacijska mreža filtrira isključivo operativne, koordinacijske i tehničk
 
 *Slika 4. Vizualizacija organizacijske mreže: Graf formalne suradnje prikazuje funkcionalnu podjelu uloga. Boje označavaju stabilne radne skupine rekonstruirane s obzirom na projektnu suradnju, dok debljina veza upućuje na intenzitet zajedničkog operativnog rada.*
 
-U nastavku je prikazana fotografija koja pokazuje formalne strukture udruge na djelu — javne debate, koordinaciju i visoku razinu organizacijske posvećenosti:
-
-![Fotografija organizacijske suradnje i javnih debata Kulturnog fronta](./src/assets/images/organizacijska_suradnja_event_1780257207732.png)
-
-*Slika 5. Operativna snaga udruge: Javne tribine, stručna predavanja i debate u sklopu projekta Coffee House Debates oslanjaju se na preciznu tehničku, komunikacijsku i logističku suradnju radnih timova.*
-
 **Sociometrijska interpretacija organizacijske mreže:**
 - **Preraspodjela utjecaja:** Uspoređujući ovaj graf s društvenom mrežom, vidimo dramatičnu promjenu u strukturi moći i raspodjeli aktivnosti. Članovi koji su bili na periferiji u neformalnom druženju, poput **Valentine**, ovdje postaju ključni operativni stupovi. Valentina i **Mravac** tvore koordinacijsku os koja drži cijelu mrežu u ravnoteži.
 - **Identifikacija radnih timova (Klasteri po bojama):**

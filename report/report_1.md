@@ -97,7 +97,7 @@ Razvijena metodologija istraživanja podrazumijeva dubinsku podjelu odnosa unuta
 #### 3.2.1 Društvena mreža (Druženje i posjeti)
 Ova dimenzija mreže rekonstruirana je na temelju zabilježenih neformalnih interakcija, posjeta, slobodnog vremena i zajedničkih druženja izvan formalnih projekata udruge.
 
-![Društvena mreža udruge Kulturni front][(https://raw.githubusercontent.com/sanjanovak/kulturnifront/refs/heads/main/report/kulturni_front_mreza_ukupno.png)]
+![Društvena mreža udruge Kulturni front](https://raw.githubusercontent.com/sanjanovak/kulturnifront/refs/heads/main/report/kulturni_front_mreza_ukupno.png)
 
 *Slika 2. Vizualizacija društvene mreže (druženje i posjeti): Graf prikazuje srodnost i neformalne kontakte. Primjetan je gusti centralno-desni blok s "toplim" narančastim čvorovima koji provode najviše slobodnog vremena zajedno, dok je lijeva strana (plava) znatno raspršenija i predstavlja periferne članove.*
 

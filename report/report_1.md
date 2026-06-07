@@ -105,6 +105,8 @@ U nastavku je predočena prekrasna fotografska ilustracija koja zorno dočarava 
 
 ![Fotografija društvenog druženja članova Kulturnog fronta](./src/assets/images/drustveno_druzenje_mreza_1780257187388.png)
 
+![Fotografija društvenog druženja članova Kulturnog fronta](https://raw.githubusercontent.com/sanjanovak/kulturnifront/refs/heads/main/report/kulturni_front_mreza_druzenje.png "Fotografija društvenog druženja članova Kulturnog fronta")
+
 *Slika 3. Emocionalno i socijalno vezivo udruge: Neformalni susreti, društvene igre i opuštena druženja u klupskim prostorijama čine temeljnu pokretačku snagu socijalne kohezije unutar udruge Kulturni front.*
 
 **Sociometrijska interpretacija društvene mreže:**

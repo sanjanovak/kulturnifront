@@ -101,12 +101,6 @@ Ova dimenzija mreže rekonstruirana je na temelju zabilježenih neformalnih inte
 
 *Slika 2. Vizualizacija društvene mreže (druženje i posjeti): Graf prikazuje srodnost i neformalne kontakte. Primjetan je gusti centralno-desni blok s "toplim" narančastim čvorovima koji provode najviše slobodnog vremena zajedno, dok je lijeva strana (plava) znatno raspršenija i predstavlja periferne članove.*
 
-U nastavku je predočena prekrasna fotografska ilustracija koja zorno dočarava neformalnu atmosferu druženja i snažno socijalno vezivo u udruzi:
-
-![Fotografija društvenog druženja članova Kulturnog fronta](https://raw.githubusercontent.com/sanjanovak/kulturnifront/refs/heads/main/report/kulturni_front_mreza_druzenje.png "Fotografija društvenog druženja članova Kulturnog fronta")
-
-*Slika 3. Emocionalno i socijalno vezivo udruge: Neformalni susreti, društvene igre i opuštena druženja u klupskim prostorijama čine temeljnu pokretačku snagu socijalne kohezije unutar udruge Kulturni front.*
-
 **Sociometrijska interpretacija društvene mreže:**
 - **Središnja jezgra (Social Core):** U desnom, gušće povezanim dijelu grafa, uočavamo iznimno čvrstu koheziju između aktera kao što su **Mravac**, **Moreno**, **Cer**, **Margo** i **Kunštek**. Ovi članovi tvore primarnu kliku (social clique) s izrazito jakim weights (težinama) veza, što pokazuje da se jezgra udruge u privatno vrijeme neprestano preklapa i intenzivno druži. Oni generiraju socijalnu energiju i neformalnu integraciju tima.
 - **Klasterizacija (Zajednice):** Grafika zorno identificira snažan "narančasti" blok (Domenika, Leso, Cer, Moreno, Mravac, Margo, Kunštek, Ren) koji funkcionira kao homogeno emotivno i socijalno tijelo. Nasuprot tome, "plavi" akteri su pozicionirani više na krajevima ili duž lijeve strane.
